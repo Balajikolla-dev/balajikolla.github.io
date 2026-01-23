@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balaji Kolla | Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+        
+        body {
+            background-color: #000;
+            color: #f5f5f7;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .glass-nav {
+            background: rgba(22, 22, 23, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(180deg, #ffffff 0%, #a1a1a6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bento-card {
+            background: #1c1c1e;
+            border-radius: 24px;
+            transition: transform 0.5s cubic-bezier(0.2, 0, 0, 1);
+            overflow: hidden;
+        }
+
+        .bento-card:hover {
+            transform: scale(1.02);
+        }
+
+        /* Project Container with Hover Effects */
+        .project-display {
+            background: #1c1c1e;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin-top: 3rem;
+            text-align: left;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: default;
+        }
+
+        .project-display:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 113, 227, 0.6);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        .apple-button {
+            background: #0071e3;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 980px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .apple-button:hover {
+            background: #0077ed;
+            transform: scale(1.05);
+        }
+
+        /* Outline Button with Hover Effect */
+        .outline-button {
+            border: 1px solid #0071e3;
+            color: #0071e3;
+            padding: 10px 20px;
+            border-radius: 980px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .outline-button:hover {
+            background: #0071e3;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* GitHub Icon Styling */
+        .github-icon-md {
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+            color: #9ca3af;
+        }
+
+        .github-icon-md:hover {
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed top-0 w-full z-50 glass-nav">
+        <div class="max-w-5xl mx-auto px-6 h-12 flex items-center justify-between">
+            <div class="text-sm font-semibold tracking-tight"><b>Balaji Kolla</b></div>
+            <div class="space-x-8 text-xs font-medium text-gray-400">
+                <a href="#work" class="hover:text-white transition">About</a>
+                <a href="#philosophy" class="hover:text-white transition">Philosophy</a>
+                <a href="#projects-section" class="hover:text-white transition">Projects</a>
+                <a href="#contact" class="hover:text-white transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="h-screen flex flex-col items-center justify-center text-center px-6">
+        <h2 class="text-lg md:text-2xl font-semibold mb-4 animate__animated animate__fadeInDown text-gray-400">
+            Software Developer & IT Student.
+        </h2>
+        <h1 class="text-5xl md:text-8xl font-bold hero-gradient tracking-tight mb-8 animate__animated animate__fadeIn">
+            Design for the <br> Human Interface.
+        </h1>
+        <p class="max-w-2xl text-xl md:text-2xl text-gray-400 font-medium leading-relaxed animate__animated animate__fadeInUp">
+            Building clean, efficient frameworks at Agni College of Technology to define how we interact with technology.
+        </p>
+    </section>
+
+    <section id="work" class="max-w-6xl mx-auto px-6 py-24">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="md:col-span-2 bento-card p-12 flex flex-col justify-end min-h-[400px] relative">
+                <div class="absolute top-10 right-10 text-6xl opacity-20 text-blue-500">🎓</div>
+                <h3 class="text-3xl font-bold mb-2">Academic Foundation</h3>
+                <p class="text-gray-400 text-lg">B.Tech Information Technology student with a strong foundation in programming and problem-solving.</p>
+            </div>
+
+            <div class="bento-card p-10 flex flex-col justify-center items-center text-center">
+                <div class="text-6xl mb-4 font-bold text-blue-500">4+</div>
+                <h3 class="text-xl font-bold">Key Projects</h3>
+                <p class="text-gray-400 mt-2">Specializing in Java, Python, and C/C++ applications.</p>
+            </div>
+
+            <div class="bento-card p-10">
+                <h3 class="text-xl font-bold mb-4 text-orange-400">Technical Stack</h3>
+                <ul class="text-gray-400 space-y-2">
+                    <li>• Frontend (HTML, CSS, JS)</li>
+                    <li>• C / C++ & Java</li>
+                    <li>• Python Development</li>
+                </ul>
+            </div>
+
+            <div class="md:col-span-2 bento-card p-10 flex items-center justify-between bg-gradient-to-r from-zinc-900 to-zinc-800">
+                <div>
+                    <h3 class="text-2xl font-bold mb-2">Project Spotlights</h3>
+                    <p class="text-gray-400 text-sm">Library & Student Management Systems with optimized file handling and OOP design.</p>
+                </div>
+                <div class="hidden md:block text-4xl font-mono text-green-500">Fast_IO</div>
+            </div>
+
+            <div class="bento-card p-10">
+                <h3 class="text-xl font-bold mb-4 text-purple-400">Soft Skills</h3>
+                <p class="text-gray-400 text-sm">Leadership, Critical Thinking, and Teamwork developed through project collaboration.</p>
+            </div>
+
+            <div class="bento-card p-10 bg-zinc-900">
+                <h3 class="text-xl font-bold mb-4 text-emerald-400">Languages</h3>
+                <div class="text-gray-400 text-sm list-none">
+                    <li> English</li>
+                    <li> Telugu</li>
+                    <li> Hindi</li>
+                    <li> Tamil</li>
+                </div>
+            </div>
+
+            <div class="md:col-span-1 bento-card p-10 border border-zinc-800">
+                <h3 class="text-xl font-bold mb-2">Tools</h3>
+                <div class="text-gray-400 text-sm list-none">
+                    <li> VS Code</li>
+                    <li> Microsoft Office Tools</li>
+                    <li> Linux User</li>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="philosophy" class="py-32 bg-white text-black text-center px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl md:text-6xl font-bold tracking-tight leading-tight">
+                "Simple can be harder than complex. You have to work hard to get your thinking clean to make it simple."
+            </h2>
+            <p class="mt-8 text-xl text-gray-500 font-medium">— Balaji Kolla</p>
+        </div>
+    </section>
+
+    <section id="projects-section" class="max-w-4xl mx-auto px-6 py-24 text-center">
+        <h2 class="text-3xl md:text-5xl font-bold mb-4">Project Insights</h2>
+        <p class="text-gray-400 mb-12">Continuously evolving through code and design.</p>
+        
+        <div class="project-display animate__animated">
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Core Engineering Projects</h3>
+                    <p class="text-gray-400">Management systems built with efficiency and clean UI.</p>
+                </div>
+                <div class="flex gap-4">
+                    <a href="https://github.com/yourusername" target="_blank" class="github-icon-md"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+
+            <a href="project_content.html" class="outline-button">
+                View Project Details <i class="fas fa-arrow-right text-sm"></i>
+            </a>
+        </div>
+
+        <div id="contact" class="mt-24 pt-12">
+            <h2 class="text-3xl font-bold mb-8">Ready for the next evolution?</h2>
+            <a href="mailto:kollabalaji810@gmail.com" class="apple-button text-lg">
+                Start a Conversation
+            </a>
+            <div class="mt-12 text-gray-400">
+                <p>+91 96183 47008</p>
+                <p>Chennai, Tamil Nadu</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center text-gray-600 text-sm">
+        Built with Enthusiasm.<br>Balaji Kolla © 2026 All rights reserved.
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.bento-card, .project-display').forEach((el) => observer.observe(el));
+    </script>
+</body>
+</html>
