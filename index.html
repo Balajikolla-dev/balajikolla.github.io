@@ -10,253 +10,303 @@
     <style>
         @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
         
+        :root {
+            --apple-blue: #0071e3;
+            --card-bg: #1c1c1e;
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
         body {
             background-color: #000;
             color: #f5f5f7;
             font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
             overflow-x: hidden;
             scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 113, 227, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
         }
 
         .glass-nav {
-            background: rgba(22, 22, 23, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--glass-border);
         }
 
         .hero-gradient {
-            background: linear-gradient(180deg, #ffffff 0%, #a1a1a6 100%);
+            background: linear-gradient(180deg, #ffffff 30%, #86868b 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .bento-card {
-            background: #1c1c1e;
-            border-radius: 24px;
-            transition: transform 0.5s cubic-bezier(0.2, 0, 0, 1);
-            overflow: hidden;
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 32px;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
         }
 
         .bento-card:hover {
-            transform: scale(1.02);
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
         }
 
-        /* Project Container with Hover Effects */
         .project-display {
-            background: #1c1c1e;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 2.5rem;
-            margin-top: 3rem;
-            text-align: left;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: default;
-        }
-
-        .project-display:hover {
-            transform: translateY(-8px);
-            border-color: rgba(0, 113, 227, 0.6);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            background: linear-gradient(145deg, #0a0a0a 0%, #161617 100%);
+            border: 1px solid var(--glass-border);
+            border-radius: 38px;
+            transition: all 0.5s ease;
         }
 
         .apple-button {
-            background: #0071e3;
+            background: var(--apple-blue);
             color: white;
-            padding: 12px 24px;
+            padding: 12px 28px;
             border-radius: 980px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: inline-block;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
         }
 
         .apple-button:hover {
-            background: #0077ed;
-            transform: scale(1.05);
+            transform: scale(1.03);
+            box-shadow: 0 0 20px rgba(0, 113, 227, 0.4);
         }
 
-        /* Outline Button with Hover Effect */
-        .outline-button {
-            border: 1px solid #0071e3;
-            color: #0071e3;
-            padding: 10px 20px;
-            border-radius: 980px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+        .mode-active {
+            opacity: 1 !important;
+        }
+        .mode-active h3 {
+            font-style: italic;
+            transform: translateX(15px);
+            color: var(--apple-blue) !important;
         }
 
-        .outline-button:hover {
-            background: #0071e3;
+        .tech-pill {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.8rem;
+            color: #a1a1a6;
+            transition: all 0.3s;
+        }
+
+        .tech-pill:hover {
+            background: rgba(255, 255, 255, 0.1);
             color: white;
-            transform: scale(1.05);
         }
 
-        /* GitHub Icon Styling */
-        .github-icon-md {
-            font-size: 1.8rem;
-            transition: all 0.3s ease;
-            color: #9ca3af;
-        }
-
-        .github-icon-md:hover {
-            color: #ffffff;
-            transform: scale(1.1);
+        #contact-preview {
+            /* Ensures illustrations look consistent regardless of original dimensions */
+            object-fit: contain; 
+            background-color: white;
         }
     </style>
 </head>
-<body>
+<body class="antialiased">
 
     <nav class="fixed top-0 w-full z-50 glass-nav">
-        <div class="max-w-5xl mx-auto px-6 h-12 flex items-center justify-between">
-            <div class="text-sm font-semibold tracking-tight"><b>Balaji Kolla</b></div>
-            <div class="space-x-8 text-xs font-medium text-gray-400">
+        <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+            <div class="text-lg font-bold tracking-tight">Balaji Kolla</div>
+            <div class="hidden md:flex space-x-10 text-[13px] font-medium text-gray-400">
                 <a href="#work" class="hover:text-white transition">About</a>
                 <a href="#philosophy" class="hover:text-white transition">Philosophy</a>
                 <a href="#projects-section" class="hover:text-white transition">Projects</a>
                 <a href="#contact" class="hover:text-white transition">Contact</a>
             </div>
+            <a href="mailto:kollabalaji810@gmail.com" class="text-[11px] uppercase tracking-wider bg-white text-black px-5 py-1.5 rounded-full font-bold hover:bg-gray-200 transition">Hire Me</a>
         </div>
     </nav>
 
-    <section class="h-screen flex flex-col items-center justify-center text-center px-6">
-        <h2 class="text-lg md:text-2xl font-semibold mb-4 animate__animated animate__fadeInDown text-gray-400">
-            Software Developer & IT Student.
-        </h2>
-        <h1 class="text-5xl md:text-8xl font-bold hero-gradient tracking-tight mb-8 animate__animated animate__fadeIn">
-             I don't just build apps.<br> I solve bottlenecks.
+    <section class="min-h-screen flex flex-col items-center justify-center text-center px-6 relative">
+        <div class="animate__animated animate__fadeInDown text-blue-500 font-bold tracking-[0.3em] uppercase text-[10px] mb-8">
+            Software Engineering • 2026
+        </div>
+        <h1 class="text-6xl md:text-8xl font-bold hero-gradient tracking-tighter mb-8 animate__animated animate__fadeIn leading-[1]">
+            I don't just build apps.<br> I solve bottlenecks.
         </h1>
-        <p class="max-w-2xl text-xl md:text-2xl text-gray-400 font-medium leading-relaxed animate__animated animate__fadeInUp">
-            Building clean, efficient frameworks at Agni College of Technology to define how we interact with technology.
+        <p class="max-w-2xl text-lg md:text-xl text-gray-400 font-normal leading-relaxed animate__animated animate__fadeInUp">
+            B.Tech IT student. Designing high-fidelity systems with a focus on performance and minimal aesthetics.
         </p>
     </section>
 
     <section id="work" class="max-w-6xl mx-auto px-6 py-24">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="md:col-span-2 bento-card p-12 flex flex-col justify-end min-h-[400px] relative">
-                <div class="absolute top-10 right-10 text-6xl opacity-20 text-blue-500">🎓</div>
-                <h3 class="text-3xl font-bold mb-2">Academic Foundation</h3>
-                <p class="text-gray-400 text-lg">B.Tech Information Technology student with a strong foundation in programming and problem-solving.</p>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+            <div class="md:col-span-8 bento-card p-12 flex flex-col justify-end min-h-[420px] overflow-hidden">
+                <div class="absolute -top-10 -right-10 text-[220px] opacity-[0.02] rotate-12 select-none">🎓</div>
+                <h3 class="text-4xl font-bold mb-4">Academic Foundation</h3>
+                <p class="text-gray-400 text-lg max-w-lg leading-relaxed">Specializing in Information Technology with a heavy focus on data structures, IoT, and scalable software architecture.</p>
             </div>
 
-            <div class="bento-card p-10 flex flex-col justify-center items-center text-center">
-                <div class="text-6xl mb-4 font-bold text-blue-500">4+</div>
-                <h3 class="text-xl font-bold">Key Projects</h3>
-                <p class="text-gray-400 mt-2">Specializing in Java, Python, and C/C++ applications.</p>
+            <div class="md:col-span-4 bento-card p-10 flex flex-col justify-center items-center text-center">
+                <div class="text-7xl mb-4 font-bold text-white tracking-tighter">4<span class="text-blue-500 font-light">+</span></div>
+                <h3 class="text-xl font-medium text-gray-300">Live Projects</h3>
+                <p class="text-gray-500 mt-4 text-sm uppercase tracking-widest">Scalable Systems</p>
             </div>
 
-            <div class="bento-card p-10">
-                <h3 class="text-xl font-bold mb-4 text-orange-400">Technical Stack</h3>
-                <ul class="text-gray-400 space-y-2">
-                    <li>• Frontend (HTML, CSS, JS)</li>
-                    <li>• C / C++ & Java</li>
-                    <li>• Python Development</li>
-                    <li>• Ardurino</li>
-                    <li>• Espressif IoT Development Framework</li>
-                </ul>
-            </div>
-
-            <div class="md:col-span-2 bento-card p-10 flex items-center justify-between bg-gradient-to-r from-zinc-900 to-zinc-800">
-                <div>
-                    <h3 class="text-2xl font-bold mb-2">Project Spotlights</h3>
-                    <p class="text-gray-400 text-sm">As a student developer, I don't just "write code." I build high-fidelity systems.<br>I focus on the **1% details**—the latency of a button click, the memory footprint of an image, and the accessibility of a gesture.</p>
-                </div>
-                <div class="hidden md:block text-4xl font-mono text-green-500">Fast_IO</div>
-            </div>
-
-            <div class="bento-card p-10">
-                <h3 class="text-xl font-bold mb-4 text-purple-400">Soft Skills</h3>
-                <p class="text-gray-400 text-sm">Leadership, Critical Thinking, and Teamwork developed through project collaboration.</p>
-            </div>
-
-            <div class="bento-card p-10 bg-zinc-900">
-                <h3 class="text-xl font-bold mb-4 text-emerald-400">Languages</h3>
-                <div class="text-gray-400 text-sm list-none">
-                    <li> English</li>
-                    <li> Telugu</li>
-                    <li> Hindi</li>
-                    <li> Tamil</li>
+            <div class="md:col-span-5 bento-card p-10">
+                <h3 class="text-xl font-bold mb-8 text-orange-400 tracking-tight">Technical Arsenal</h3>
+                <div class="grid grid-cols-2 gap-3">
+                    <span class="tech-pill text-center">Java / Spring</span>
+                    <span class="tech-pill text-center">Python / AI</span>
+                    <span class="tech-pill text-center">Embedded C++</span>
+                    <span class="tech-pill text-center">React / JS</span>
+                    <span class="tech-pill text-center">IoT / ESP32</span>
+                    <span class="tech-pill text-center">Linux / Bash</span>
                 </div>
             </div>
 
-            <div class="md:col-span-1 bento-card p-10 border border-zinc-800">
-                <h3 class="text-xl font-bold mb-2">Tools</h3>
-                <div class="text-gray-400 text-sm list-none">
-                    <li>• VS Code</li>
-                    <li>• Figma</li>
-                    <li>• Microsoft Office Tools</li>
-                    <li>• Linux</li>
-                    <li>• IoT Dvelopment</li>
+            <div class="md:col-span-7 bento-card p-12 bg-gradient-to-br from-zinc-900/50 to-black flex items-center">
+                <div class="flex-1">
+                    <h3 class="text-2xl font-bold mb-4">The 1% Detail</h3>
+                    <p class="text-gray-400 leading-relaxed text-sm md:text-base">I focus on micro-interactions—the latency of a button click, the memory footprint of an image, and the intuitive flow of a gesture.</p>
                 </div>
+                <div class="hidden md:block text-4xl font-mono text-green-500/20 rotate-90">0xFAST_IO</div>
             </div>
         </div>
     </section>
 
-    <section id="philosophy" class="py-32 bg-white text-black text-center px-6">
+    <section id="philosophy" class="py-48 bg-white text-black text-center px-6">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl md:text-6xl font-bold tracking-tight leading-tight">
-                "Simple can be harder than complex. You have to work hard to get your thinking clean to make it simple."
+            <h2 class="text-4xl md:text-6xl font-bold tracking-tighter leading-[1.1]">
+                "Simple can be harder than complex. You have to work hard to get your thinking clean."
             </h2>
-            <p class="mt-8 text-xl text-gray-500 font-medium">— Balaji Kolla</p>
+            <p class="mt-12 text-gray-400 font-medium tracking-widest uppercase text-xs">— The Minimalist Philosophy</p>
         </div>
     </section>
 
-    <section id="projects-section" class="max-w-4xl mx-auto px-6 py-24 text-center">
-        <h2 class="text-3xl md:text-5xl font-bold mb-4">Project Insights</h2>
-        <p class="text-gray-400 mb-12">Continuously evolving through code and design.</p>
+    <section id="projects-section" class="max-w-6xl mx-auto px-6 py-32 text-center">
+        <div class="mb-20">
+            <h2 class="text-5xl md:text-7xl font-bold mb-6 tracking-tighter">Project Insights</h2>
+            <div class="w-20 h-1 bg-blue-500 mx-auto rounded-full"></div>
+        </div>
         
-        <div class="project-display animate__animated">
-            <div class="flex justify-between items-start mb-6">
-                <div>
-                    <h3 class="text-2xl font-bold text-white mb-2">Core Engineering Projects</h3>
-                    <p class="text-gray-400">Management systems built with efficiency and clean UI.</p>
+        <div class="project-display text-left p-8 md:p-16">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-12">
+                <div class="flex-1">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="bg-blue-500/10 text-blue-500 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-tighter">Status: Active</span>
+                    </div>
+                    <h3 class="text-3xl md:text-4xl font-bold text-white mb-6">Core Engineering Systems</h3>
+                    <p class="text-gray-400 text-lg leading-relaxed mb-10">
+                        Developing enterprise-grade management systems. My approach prioritizes high-performance backends with zero-latency frontend response times.
+                    </p>
+                    <a href="project_content.html" class="apple-button">
+                        View Project Details <i class="fas fa-arrow-right ml-3 text-xs"></i>
+                    </a>
                 </div>
-                <div class="flex gap-4">
-                    <a href="https://github.com/yourusername" target="_blank" class="github-icon-md"><i class="fab fa-github"></i></a>
+                <div class="w-full md:w-1/2 aspect-video bg-black/40 rounded-3xl border border-white/5 flex items-center justify-center relative group overflow-hidden">
+                    <i class="fab fa-github text-8xl text-white/5 group-hover:text-white/10 transition-all duration-700 group-hover:scale-110"></i>
                 </div>
             </div>
-
-            <a href="project_content.html" class="outline-button">
-                View Project Details <i class="fas fa-arrow-right text-sm"></i>
-            </a>
         </div>
 
-        <div id="contact" class="mt-24 pt-12">
-            <h2 class="text-3xl font-bold mb-8">Ready for the next evolution?</h2>
-            <a href="mailto:kollabalaji810@gmail.com" class="apple-button text-lg">
-                Start a Conversation
+        <div class="mt-32 bg-[#1c1c1e] p-8 md:p-16 rounded-[48px] border border-white/5">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-16 items-center">
+                <div class="text-left lg:col-span-1">
+                    <h2 class="text-5xl font-bold tracking-tighter leading-none mb-4">How can I<br><span class="text-blue-500">help you?</span></h2>
+                    <p class="text-gray-500">I bridge the gap between complex logic and human-centric design.</p>
+                </div>
+                
+                <div class="space-y-4 text-left lg:col-span-1">
+                    <div class="mode-item group cursor-pointer py-6 border-b border-white/5 transition-all mode-active" onclick="updateContactMode('dev', this)">
+                        <span class="text-[10px] text-gray-500 tracking-[0.2em] uppercase">Phase 01</span>
+                        <h3 class="text-3xl font-semibold text-white transition-all duration-500">Developer</h3>
+                    </div>
+
+                    <div class="mode-item group cursor-pointer py-6 border-b border-white/5 transition-all opacity-40" onclick="updateContactMode('design', this)">
+                        <span class="text-[10px] text-gray-500 tracking-[0.2em] uppercase">Phase 02</span>
+                        <h3 class="text-3xl font-semibold text-white transition-all duration-500">Designer</h3>
+                    </div>
+
+                    <div class="mode-item group cursor-pointer py-6 transition-all opacity-40" onclick="updateContactMode('creator', this)">
+                        <span class="text-[10px] text-gray-500 tracking-[0.2em] uppercase">Phase 03</span>
+                        <h3 class="text-3xl font-semibold text-white transition-all duration-500">Creator</h3>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-1 relative h-[350px] overflow-hidden rounded-[32px] border border-white/10 shadow-2xl bg-white">
+                    <img id="contact-preview" src="Developers.jpeg" 
+                         class="w-full h-full transition-all duration-500" alt="Preview">
+                </div>
+            </div>
+        </div>
+
+        <div id="contact" class="mt-48 mb-24">
+            <h2 class="text-4xl md:text-6xl font-bold mb-10 tracking-tighter">Ready for the next evolution?</h2>
+            <a href="mailto:kollabalaji810@gmail.com" class="apple-button text-xl px-12 py-6">
+                kollabalaji810@gmail.com
             </a>
-            <div class="mt-12 text-gray-400">
-                <p> Balaji kolla</p>
-                <p>+91 96183 47008</p>
-                <p>Chennai, Tamil Nadu</p>
+            <div class="mt-20 flex flex-col items-center text-gray-500 space-y-2">
+                <p class="text-white text-lg font-bold tracking-tight">Balaji Kolla</p>
+                <p class="text-sm">+91 96183 47008</p>
+                <p class="text-sm tracking-widest uppercase">Chennai, Tamil Nadu</p>
             </div>
         </div>
     </section>
 
-    <footer class="py-12 text-center text-gray-600 text-sm">
-        Built with Enthusiasm and 💖.<br>Balaji Kolla © 2026 All rights reserved.
+    <footer class="py-12 text-center text-gray-700 text-[10px] uppercase tracking-[0.4em] border-t border-white/5 bg-black">
+        Balaji Kolla © 2026 • Built with precision & high-fidelity code
     </footer>
 
     <script>
+        // Scroll Animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                    entry.target.style.opacity = "1";
                 }
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('.bento-card, .project-display').forEach((el) => observer.observe(el));
+        document.querySelectorAll('.bento-card, .project-display').forEach((el) => {
+            el.style.opacity = "0";
+            observer.observe(el);
+        });
+        
+        // Interactive Service Section Logic
+        const contactImages = {
+            dev: 'Developers.jpeg',
+            design: 'Desiginer.jpeg',
+            creator: 'content creator.jpeg'
+        };
+
+        function updateContactMode(mode, element) {
+            const previewImg = document.getElementById('contact-preview');
+            
+            // Animation out
+            previewImg.style.opacity = '0';
+            previewImg.style.transform = 'scale(0.95)';
+            
+            setTimeout(() => {
+                // Change Source
+                previewImg.src = contactImages[mode];
+                
+                // Animation in
+                previewImg.style.opacity = '1';
+                previewImg.style.transform = 'scale(1)';
+            }, 250);
+
+            // Text Highlight Logic
+            document.querySelectorAll('.mode-item').forEach(opt => {
+                opt.classList.remove('mode-active');
+                opt.classList.add('opacity-40');
+            });
+            element.classList.add('mode-active');
+            element.classList.remove('opacity-40');
+        }
     </script>
 </body>
-
 </html>
-
-
-
-
-
-
